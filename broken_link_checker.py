@@ -8,6 +8,7 @@ from urllib.parse import urlparse
 from urllib.parse import urljoin
 import time
 import datetime
+import re
 
 class bcolors:
   OKGREEN = '\033[92m'
@@ -54,15 +55,14 @@ skipthese = [
   '.doc', '.gif', '.jpg', '.jpeg', '.tar', \
   '.gz', '.zip', '.mov', '.mp3', '.wrf', \
   '.xlx', '.txt', '.dmg', '.tgz', '.mov', \
-  '.wmv', '.swf', '.pptx', '.ppt', '.pps'
+  '.wmv', '.swf', '.pptx', '.ppt', '.pps', \
+  '.jpg?*'
   ]
 
 # Loops through our target pages
 for target_url in target_urls:
   # Make sure the url has not been searched already
   if (not target_url in searched_links):
-    # Wait a little bit befor hitting it
-    time.sleep(rate_limit)
     
     url = target_url
     
@@ -82,33 +82,30 @@ for target_url in target_urls:
 
     # Get the response code of given URL
     response_code = str(page.status_code)
-    print(f"{bcolors.OKGREEN}Opening page {url} " + f" Status Code: {response_code}{bcolors.ENDC}")
+    print(f"{bcolors.OKGREEN}Opening page {url} " + f" | Status Code: {response_code}{bcolors.ENDC}")
     searched_links.append(url)
 
     #####  TO DO: CREATE AN IF, ELIF, ELSE COND HERE TO CHECK IF PAGE IS 200, 404 OR NOT
     #####  THEN PRINT IT ALSO IF BROKEN
 
+    special_extension = re.compile("\.jpg\?.*")
+
     # If URL ends with a file extension in skipthese, pass it
-    if url.endswith(tuple(skipthese)):
+    if url.endswith(tuple(skipthese)) or special_extension.search(url):
       print(f"{bcolors.CYAN}Skipping, this page has no children links, going to next URL.{bcolors.ENDC}")
       searched_links.append(url)
       pass
   
     else:
       try:
-        # Display the text of the URL in str
+        # Get the text of the URL
         data = page.text
         # Use BeautifulSoup to use the built-in methods
         soup = BeautifulSoup(data, 'lxml')
-        ###############################################################
-        ##################### I M P O R T A N T #######################
-        ########## Change 'id' below, so crawler only checks ########## 
-        ####### a particular section of webpage, i.e., content. #######
-        ###############################################################
         # target_group = soup.find(id="onelab-content") ##### !!!COMMENTED THIS OUT BECAUSE SOME WEBSITES DON'T HAVE THIS ID!!!
         target_soup = soup
 
-        if target_soup.find_all('a') == None:
+        if not target_soup.find_all('a'):
           print(f"{bcolors.CYAN}Skipping, this page has no children links, going to next URL.{bcolors.ENDC}")
           searched_links.append(url)
           pass
@@ -123,7 +120,6 @@ for target_url in target_urls:
               pass
             else:
               if (not link.get('href') == None) and (not link.get('href').startswith("mailto:")) and (not ("javascript:" in link.get('href'))):
-                time.sleep(rate_limit)
                 try:
                   # If there is regular URL scheme and netloc, i.e., https://example.com then do the below
                   if urlp.scheme in urlparse(link.get('href')):
@@ -187,10 +183,13 @@ for target_url in target_urls:
                   pass
               else:
                 pass
+            time.sleep(rate_limit)
       except AttributeError as error:
         print(f"{bcolors.WARNING}This page has no children links. Skipping to next target URL.{bcolors.ENDC}")
         searched_links.append(url)
         pass
+  # Wait a little bit befor hitting another page
+  time.sleep(rate_limit)
 
 with open(f"./broken_links/{filenetloc}-broken-links.txt", 'w') as f:
   f.write("{} Broken Links Report (404 Only)".format(urlp.netloc.upper()))
