@@ -121,7 +121,7 @@ for target_url in target_urls:
             else:
               if (not link.get('href') == None) and (not link.get('href').startswith("mailto:")) and (not ("javascript:" in link.get('href'))):
                 try:
-                  # If there is regular URL scheme and netloc, i.e., https://example.com then do the below
+                  # If there is regular URL scheme and netloc, i.e., https://example.com then execute the below
                   if urlp.scheme in urlparse(link.get('href')):
                     response = requests.get(link.get('href'))
                     status = response.status_code
@@ -150,18 +150,18 @@ for target_url in target_urls:
                   # If there is NO URL scheme and netloc, i.e., https://example.com then do the below
                   if urlp.scheme not in urlparse(link.get('href')):
                     # Attaches URL scheme and netloc to request
-                    response = requests.get(urljoin('https://' + urlp.netloc, link.get('href')))
+                    response = requests.get(urljoin(url, link.get('href')))
                     status = response.status_code
                     if status == 200:
-                      print(f"Link Url:  {urljoin('https://' + urlp.netloc, link.get('href'))} " + f"| Status Code: {status}")
+                      print(f"Link Url:  {urljoin(url, link.get('href'))} " + f"| Status Code: {status}")
                       print(f"Link text: {link.text}")
                       print('-------------')
                     # 404 errors will be printed in console as RED and printed in the report
                     elif status == 404:
                       print(f"{bcolors.BRIGHT_RED}On this page: {url}{bcolors.ENDC}")
                       broken_links.append(f"On this page: {url}")
-                      print(f"{bcolors.BRIGHT_RED}Broken link Url:  {urljoin('https://' + urlp.netloc, link.get('href'))} " + f"| Status Code: {status}{bcolors.ENDC}")
-                      broken_links.append(f"Broken link Url:  {urljoin('https://' + urlp.netloc, link.get('href'))} " + f"| Status Code: {status}")
+                      print(f"{bcolors.BRIGHT_RED}Broken link Url:  {urljoin(url, link.get('href'))} " + f"| Status Code: {status}{bcolors.ENDC}")
+                      broken_links.append(f"Broken link Url:  {urljoin(url, link.get('href'))} " + f"| Status Code: {status}")
                       print(f"{bcolors.BRIGHT_RED}Broken link text: {link.text}{bcolors.ENDC}")
                       broken_links.append(f"Broken link text: {link.text}")
                       print('-------------')
@@ -169,7 +169,7 @@ for target_url in target_urls:
                       broken_link_count += 1
                     # All other error status codes will show in console as color MAGENTA, but will not be printed in report
                     elif status != 200 or status != 404:
-                      print(f"{bcolors.MAGENTA}Link Url:  {urljoin('https://' + urlp.netloc, link.get('href'))} " + f"| Status Code: {status}{bcolors.ENDC}")
+                      print(f"{bcolors.MAGENTA}Link Url:  {urljoin(url, link.get('href'))} " + f"| Status Code: {status}{bcolors.ENDC}")
                       print(f"{bcolors.MAGENTA}Link text: {link.text}{bcolors.ENDC}")
                       print('-------------')
 
