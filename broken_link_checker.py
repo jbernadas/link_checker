@@ -56,7 +56,7 @@ skipthese = [
   '.gz', '.zip', '.mov', '.mp3', '.wrf', \
   '.xlx', '.txt', '.dmg', '.tgz', '.mov', \
   '.wmv', '.swf', '.pptx', '.ppt', '.pps', \
-  '.jpg?*'
+  '.tiff'
   ]
 
 # Loops through our target pages
@@ -123,7 +123,7 @@ for target_url in target_urls:
                 try:
                   # If there is regular URL scheme and netloc, i.e., https://example.com then do the below
                   if urlp.scheme in urlparse(link.get('href')):
-                    response = requests.get(link.get('href'), verify=False)
+                    response = requests.get(link.get('href'))
                     status = response.status_code
                     if status == 200:
                       print(f"Link Url: {link.get('href')} " + f"| Status Code: {status}")
@@ -150,7 +150,7 @@ for target_url in target_urls:
                   # If there is NO URL scheme and netloc, i.e., https://example.com then do the below
                   if urlp.scheme not in urlparse(link.get('href')):
                     # Attaches URL scheme and netloc to request
-                    response = requests.get(urljoin('https://' + urlp.netloc, link.get('href')), verify=False)
+                    response = requests.get(urljoin('https://' + urlp.netloc, link.get('href')))
                     status = response.status_code
                     if status == 200:
                       print(f"Link Url:  {urljoin('https://' + urlp.netloc, link.get('href'))} " + f"| Status Code: {status}")
