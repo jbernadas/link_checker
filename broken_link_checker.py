@@ -49,14 +49,14 @@ target_urls = target_urls_content.split(',')
 # Closes the file we opened above
 target_urls_file.close()
 
-# List of file extensions our crawler should not parse as HTML
+# List of file extensions our crawler should not parse as HTML (please use uppercase)
 skipthese = [
-  '.pdf', '.mp4', '.xlxs', '.png', '.docx', \
-  '.doc', '.gif', '.jpg', '.jpeg', '.tar', \
-  '.gz', '.zip', '.mov', '.mp3', '.wrf', \
-  '.xlx', '.txt', '.dmg', '.tgz', '.mov', \
-  '.wmv', '.swf', '.pptx', '.ppt', '.pps', \
-  '.tiff'
+  '.PDF', '.MP4', '.XLXS', '.PNG', '.DOCX', \
+  '.DOC', '.GIF', '.JPG', '.JPEG', '.TAR', \
+  '.GZ', '.ZIP', '.MOV', '.MP3', '.WRF', \
+  '.XLX', '.TXT', '.DMG', '.TGZ', '.MOV', \
+  '.WMV', '.SWF', '.PPTX', '.PPT', '.PPS', \
+  '.TIFF'
   ]
 
 # Loops through our target pages
@@ -91,7 +91,7 @@ for target_url in target_urls:
     special_extension = re.compile("\.jpg\?.*")
 
     # If URL ends with a file extension in skipthese, pass it
-    if url.endswith(tuple(skipthese)) or special_extension.search(url):
+    if url.upper().endswith(tuple(skipthese)) or special_extension.search(url):
       print(f"{bcolors.CYAN}Skipping, this page has no children links, going to next URL.{bcolors.ENDC}")
       searched_links.append(url)
       pass
