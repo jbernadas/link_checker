@@ -151,6 +151,8 @@ def link_checker(netlocSplit, rateLimit=0.5):
           soup = BeautifulSoup(data, 'lxml')
           # target_group = soup.find(id="onelab-content") ##### !!!COMMENTED THIS OUT BECAUSE SOME WEBSITES DON'T HAVE THIS ID!!!
           target_soup = soup
+          
+          base_href = target_soup.base.attrs['href']
 
           if not target_soup.find_all('a'):
             print(f"{bcolors.CYAN}Skipping, this page has no children links, going to next URL.{bcolors.ENDC}")
@@ -197,8 +199,40 @@ def link_checker(netlocSplit, rateLimit=0.5):
                         print('-------------')
                         
                       searched_links.append(link.get('href'))
-                    # If there is NO URL scheme and netloc, i.e., https://example.com then do the below
-                    if urlp.scheme not in urlparse(link.get('href')):
+
+                    # If there is NO URL scheme and base_href is populated, then do the below
+                    if urlp.scheme not in urlparse(link.get('href')) and base_href:
+                      # Prepends base_href to request
+                      response = requests.get(urljoin(base_href, link.get('href')))
+                      status = response.status_code
+                      if status == 200:
+                        print(f"Link Url:  {urljoin(base_href, link.get('href'))} " + f"| Status Code: {status}")
+                        print(f"Link text: {' '.join(link.text.split())}")
+                        print('-------------')
+                      # 404 errors will be printed in console as RED and printed in the report
+                      elif status == 404:
+                        print(f"{bcolors.BRIGHT_RED}On this page: {url}{bcolors.ENDC}")
+                        broken_links.append(f"On this page: {url}")
+                        print(f"{bcolors.BRIGHT_RED}Broken link Url:  {urljoin(base_href, link.get('href'))} " + f"| Status Code: {status}{bcolors.ENDC}")
+                        broken_links.append(f"Broken link Url:  {urljoin(base_href, link.get('href'))} " + f"| Status Code: {status}")
+                        # Prints the broken link text without duplicate spaces and new lines
+                        print(f"{bcolors.BRIGHT_RED}Broken link text: {' '.join(link.text.split())}{bcolors.ENDC}")
+                        broken_links.append(f"Broken link text: {' '.join(link.text.split())}")
+                        print('-------------')
+                        broken_links.append('-------------')
+                        broken_link_count += 1
+                      # All other error status codes will show in console as color MAGENTA, but will not be printed in report
+                      elif status != 200 or status != 404:
+                        print(f"{bcolors.MAGENTA}Link Url:  {urljoin(base_href, link.get('href'))} " + f"| Status Code: {status}{bcolors.ENDC}")
+                        # Prints the link text without duplicate spaces and new lines
+                        print(f"{bcolors.MAGENTA}Link text: {' '.join(link.text.split())}{bcolors.ENDC}")
+                        print('-------------')
+                      
+                      # searched_links.append(link.get(urljoin('https://' + urlp.netloc, link.get('href'))))
+                      searched_links.append(link.get('href'))
+                      
+                    # If there is NO URL scheme and base_href is NOT populated, then do the below
+                    if urlp.scheme not in urlparse(link.get('href')) and not base_href:
                       # Attaches URL scheme and netloc to request
                       response = requests.get(urljoin(url, link.get('href')))
                       status = response.status_code
