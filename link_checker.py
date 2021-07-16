@@ -12,6 +12,16 @@ import datetime
 import re
 import sys
 from itertools import islice
+import logging
+import http.client
+
+http.client.HTTPConnection.debuglevel = 1
+
+logging.basicConfig()
+logging.getLogger().setLevel(logging.DEBUG)
+requests_log = logging.getLogger("requests.packages.urllib3")
+requests_log.setLevel(logging.DEBUG)
+requests_log.propagate = True
 
 # Used for timer
 start_time = ''
@@ -49,7 +59,7 @@ help_text = """
 
 """ % (link_checker_version)
 
-def link_checker(netlocSplit, rateLimit=0.5):
+def link_checker(netlocSplit, session, rateLimit=0.5):
   global start_time
   global broken_link_count
   
@@ -126,7 +136,7 @@ def link_checker(netlocSplit, rateLimit=0.5):
         run_once = 1
 
       # Make a request to get the URL
-      page = requests.get(url)
+      page = session.get(url)
 
       # Get the response code of given URL
       response_code = str(page.status_code)
@@ -172,7 +182,7 @@ def link_checker(netlocSplit, rateLimit=0.5):
                   try:
                     # If there is regular URL scheme and netloc, i.e., https://example.com then execute the below
                     if urlp.scheme in urlparse(link.get('href')):
-                      response = requests.get(link.get('href'))
+                      response = session.get(link.get('href'))
                       status = response.status_code
                       if status == 200:
                         print(f"Link Url: {link.get('href')} " + f"| Status Code: {status}")
@@ -203,7 +213,7 @@ def link_checker(netlocSplit, rateLimit=0.5):
                     # If there is NO URL scheme and base_href is populated, then do the below
                     if urlp.scheme not in urlparse(link.get('href')) and base_href:
                       # Prepends base_href to request
-                      response = requests.get(urljoin(base_href, link.get('href')))
+                      response = session.get(urljoin(base_href, link.get('href')))
                       status = response.status_code
                       if status == 200:
                         print(f"Link Url:  {urljoin(base_href, link.get('href'))} " + f"| Status Code: {status}")
@@ -234,7 +244,7 @@ def link_checker(netlocSplit, rateLimit=0.5):
                     # If there is NO URL scheme and base_href is NOT populated, then do the below
                     if urlp.scheme not in urlparse(link.get('href')) and not base_href:
                       # Attaches URL scheme and netloc to request
-                      response = requests.get(urljoin(url, link.get('href')))
+                      response = session.get(urljoin(url, link.get('href')))
                       status = response.status_code
                       if status == 200:
                         print(f"Link Url:  {urljoin(url, link.get('href'))} " + f"| Status Code: {status}")
@@ -300,6 +310,9 @@ def link_checker(netlocSplit, rateLimit=0.5):
     f.write(f"---- The End. ----")
 
 def main():
+  session = requests.Session()
+  session.keep_alive = True
+
   try:
     opts, args = getopt.getopt(sys.argv[1:], "hr:v", ["help", "rate-limit"])
   except getopt.GetoptError as err:
@@ -323,7 +336,7 @@ def main():
     return 1
 
   # Start the process
-  link_checker(args[0])
+  link_checker(args[0], session)
     
   print(f"Link checker finished in {str(datetime.timedelta(seconds=(time.time() - start_time))).split('.')[0]}")
   print(f"Found {broken_link_count} broken link/s.")
