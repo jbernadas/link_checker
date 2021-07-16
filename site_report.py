@@ -95,13 +95,21 @@ def site_report(download, linkCheck, targetSite, session):
   targetSplit = urlParsed.hostname.split(".")[0]
   targetFolder = "./site_report/" + targetSplit
 
+  print("#####################################")
+  print("#### SITE REPORT SCRIPT STARTED! ####")
+  print("#####################################")
+  start_time = datetime.now()
+  print("Start time: %s" % (str(start_time).split('.')[0]))
+  print('-------------')
+
   try:
     # create the directory if it does not exist
     os.mkdir(targetFolder)
-    os.mkdir(targetFolder + '/docs_for_upload')
-    os.mkdir(targetFolder + '/imgs_for_upload')
+    print(f"Directory for {targetFolder.upper()} report created.")
   except FileExistsError:
-    print("Directory " + targetFolder + " already exists")
+    print("Directory " + targetFolder + " already exists, not recreating it. ")
+  print('-------------')
+
 
   # recreate original URL
   urlOrig = targetSite
@@ -148,13 +156,16 @@ def site_report(download, linkCheck, targetSite, session):
 
     downloader(DOC_QUALIFIERS, DOCS_FOR_UPLOAD, targetSplit, session)
 
-    print("----------")
+    print('-------------')
 
     print("Preparing to begin image download!")
 
     downloader(IMG_QUALIFIERS, IMGS_FOR_UPLOAD, targetSplit, session)
   
   if download.upper() == "DOC":
+
+    os.mkdir(targetFolder + '/docs_for_upload')
+    print(f"{targetFolder}/docs_for_upload directory created.")
 
     doc_count = counter_func(DOC_QUALIFIERS, targetSplit)
 
@@ -163,6 +174,9 @@ def site_report(download, linkCheck, targetSite, session):
     downloader(DOC_QUALIFIERS, DOCS_FOR_UPLOAD, targetSplit, session)
 
   if download.upper() == "IMG":
+
+    os.mkdir(targetFolder + '/imgs_for_upload')
+    print(f"{targetFolder}/imgs_for_upload directory created.")
 
     img_count = counter_func(IMG_QUALIFIERS, targetSplit)
 
