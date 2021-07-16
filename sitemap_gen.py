@@ -552,8 +552,13 @@ def write_alt_info(fileName):
     if fileN.endswith(".txt"):
         extension_removed = re.sub('.txt', '', str(fileN))
     alt_info_file_path = os.path.join('./site_report', extension_removed)
-    with open(alt_info_file_path + '/imgs_for_upload/alt-info.json', 'w+') as f:
-        json.dump(altInfo, f)
+    if os.path.isdir(alt_info_file_path + '/imgs_for_upload'):
+        with open(alt_info_file_path + '/imgs_for_upload/alt-info.json', 'w+') as f:
+            json.dump(altInfo, f)
+        print("Created: 'alt_info.json' file.")
+        print('-------------')
+    else:
+        pass
 
 def main():
     try:
@@ -614,20 +619,16 @@ def main():
         return 1
 
     # Start processing
-    start_time = datetime.now()
-    print("Start time: %s" % (start_time))
     print("Crawling the site..." )
-    print("--------")
+    print('-------------')
     loader = HTMLLoad(ratelimit)
     pageMap = parsePages(loader, args[0], maxUrls, blockExtensions)
     print("Generating sitemap: %d URLs" % (len(pageMap)))
-    print("--------")
+    print('-------------')
     generateSitemapFile(pageMap, fileName, changefreq, priority)
     print("Finished mapping site.")
-    print("--------")
+    print('-------------')
     write_alt_info(fileName)
-    print("Created: 'alt_info.json' file.")
-    print("--------")
     return 0
 #end def
 
