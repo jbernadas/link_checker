@@ -13,10 +13,16 @@ import re
 import sys
 from itertools import islice
 
+# Used for timer
+start_time = ''
+# Counts broken links found 
+broken_link_count = 0
+link_checker_version = "1.0.1"
+
 help_text = """
 
   ######################################################
-  ######  LINK CHECKER version 1.0.1 (2021-07-14)  #####
+  ############  LINK CHECKER version %s  ############
   ################ by: Joseph Bernadas #################
 
   This command line program crawls a website based on a previously
@@ -28,7 +34,8 @@ help_text = """
 
   -h          --help            Print this help text
   -v          --verbose         Verbose command line output
-  -r          --rate-limit      A float in seconds that determines how fast the crawler should run
+  -r          --rate-limit      A float in seconds that determines how 
+                                fast the crawler should query the site
 
 
   Usage example:
@@ -40,19 +47,16 @@ help_text = """
   inside of the 'site_report' directory where our list
   of URLs are located in a text file.
 
-"""
-
-# Used for timer
-start_time = ''
-# Counts broken links found 
-broken_link_count = 0
+""" % (link_checker_version)
 
 def link_checker(netlocSplit, rateLimit=0.5):
   global start_time
   global broken_link_count
   
   start_time = time.time()
-  print("---- Link Checker starting! ----")
+  print("###############################")
+  print("#### LINK CHECKER STARTED! ####")
+  print("###############################")
 
   class bcolors:
     OKGREEN = '\033[92m'
@@ -139,10 +143,6 @@ def link_checker(netlocSplit, rateLimit=0.5):
         print(f"{bcolors.CYAN}Skipping, this has no children links, going to next URL.{bcolors.ENDC}")
         searched_links.append(url)
         pass
-      elif '#' in url:
-        searched_links.append(url)
-        print(f"{bcolors.CYAN}Skipping, hashtag in URL, going to next link.")
-        pass
       else:
         try:
           # Get the text of the URL
@@ -160,9 +160,9 @@ def link_checker(netlocSplit, rateLimit=0.5):
           else:
             # Iterate over all links on the given URL with the response code next to it
             for link in target_soup.find_all('a'):
-              # Make sure this link has not been searched yet, if it is, skip it
+              # Make sure this link has not been checked yet, if it has, skip it
               if (link.get('href') in searched_links):
-                print(f'{bcolors.CYAN}Skipping. This link has already been searched ({link.get("href")}).{bcolors.ENDC}')
+                print(f'{bcolors.CYAN}Skipping. This link has already been checked ({link.get("href")}).{bcolors.ENDC}')
                 print('-------------')
                 pass
               else:
@@ -246,7 +246,7 @@ def link_checker(netlocSplit, rateLimit=0.5):
   with open(f"./site_report/{netlocSplit}/{netlocSplit}-broken-links.txt", 'w') as f:
     f.write("{} - Broken Links Report (404 Only)\n".format(netlocSplit.upper()))
     f.write("(This link checker can be configured to look for any HTTP response status code.)\n")
-    f.write("Version: 1.0.0")
+    f.write(f"Version: {link_checker_version}")
     f.write("\n\n")
 
     # If it finds 2 or more broken links then write this
