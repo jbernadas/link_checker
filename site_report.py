@@ -121,7 +121,7 @@ def site_report(download, linkCheck, targetSite, session):
   exclude = "-b tif -b mpg -b txt -b zip -b psd -b mpeg -b mp3 -b gz -b tar"
 
   # executeSitemapGenXml = "python ./sitemap_gen.py {} -r {} -o {} {}".format(exclude, 0, os.path.join(targetFolder, targetSplit) + ".xml", urlOrig)
-  executeSitemapGenTxt = "python ./sitemap_gen.py {} -r {} -o {} {}".format(exclude, 0, os.path.join(targetFolder, targetSplit) + ".txt", urlOrig)
+  executeSitemapGenTxt = "python3 ./sitemap_gen.py {} -r {} -o {} {}".format(exclude, 0, os.path.join(targetFolder, targetSplit) + ".txt", urlOrig)
 
   ## run sitemap_gen.py
   # os.system(executeSitemapGenXml)
