@@ -1,4 +1,4 @@
-#! /usr/bin/python3
+#!/usr/bin/python3
 
 from bs4 import BeautifulSoup, SoupStrainer
 import lxml
@@ -9,9 +9,12 @@ from urllib.parse import urlparse
 from urllib.parse import urljoin
 import time
 import datetime
+import urllib3
 import re
 import sys
 from itertools import islice
+import random
+# # For debugging starts
 # import logging
 # import http.client
 
@@ -22,6 +25,7 @@ from itertools import islice
 # requests_log = logging.getLogger("requests.packages.urllib3")
 # requests_log.setLevel(logging.DEBUG)
 # requests_log.propagate = True
+# # End of For debugging
 
 # Used for timer
 start_time = ''
@@ -292,17 +296,17 @@ def link_checker(netlocSplit, session, rateLimit=0.5):
 
   with open(f"./site_report/{netlocSplit}/{netlocSplit}-broken-links.txt", 'w') as f:
     f.write("{} - Broken Links Report (404 Only)\n".format(netlocSplit.upper()))
-    f.write("(This link checker can be configured to look for any HTTP response status code.)\n")
+    f.write("(This link checker can be configured to look for any HTTP status code.)\n")
     f.write(f"Version: {link_checker_version}")
-    f.write("\n\n")
+    f.write("\n")
 
     # If it finds 2 or more broken links then write this
     if broken_link_count >= 2 or broken_link_count == 0:
-      f.write("There were {} broken links found.\n".format(broken_link_count))
+      f.write("Found {} broken links.\n".format(broken_link_count))
     
     # Else then write this
     else:
-      f.write("There was {} broken link found.".format(broken_link_count))
+      f.write("Found {} broken link.".format(broken_link_count))
     
     # Put 2 extra spaces
     f.write("\n\n")
@@ -313,7 +317,19 @@ def link_checker(netlocSplit, session, rateLimit=0.5):
     f.write(f"---- The End. ----")
 
 def main():
+
+  user_agent_list = [
+    'Mozilla/5.0 (X11; Ubuntu; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2919.83 Safari/537.36'
+    'Mozilla/5.0 (X11; I; Linux i686; en-US; rv:1.9a3pre) Gecko/20070330'
+    'Mozilla/5.0 (X11; I; Linux i686; ru; rv:1.9.0.8) Gecko/2009032711'
+    'Mozilla/5.0 (X11; ; Linux i686; rv:1.9.2.20) Gecko/20110805'
+    'Opera/9.80 (X11; Linux i686; Ubuntu/14.10) Presto/2.12.388 Version/12.16'
+  ]
+
   session = requests.Session()
+  user_agent = random.choice(user_agent_list)
+  headers = {'User-Agent': user_agent}
+  session.headers.update(headers)
   session.keep_alive = True
 
   try:
