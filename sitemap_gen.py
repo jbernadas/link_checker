@@ -1,4 +1,4 @@
-#! /usr/bin/env python3
+#!/usr/bin/env python3
 """
     Copyright (C) 2007-2009 Vladimir Toncar
     Copyright (C) 2018-2020 Bernhard Ehlers
@@ -152,8 +152,7 @@ class HTMLLoad:
 
         self.ratelimit.sleep()
         try:
-            resp = self.session.get(url, timeout=120,
-                                    allow_redirects=allow_redirects)
+            resp = self.session.get(url, timeout=120, allow_redirects=allow_redirects)
             self.status = resp.status_code
             if resp.status_code in (301, 302, 303, 307):
                 self._handle_redirect(resp)
@@ -163,15 +162,13 @@ class HTMLLoad:
             date = resp.headers.get('last-modified') or resp.headers.get('date')
             try:
                 if date:
-                    self.date = datetime.strptime(date,
-                                                  '%a, %d %b %Y %H:%M:%S %Z')
+                    self.date = datetime.strptime(date, '%a, %d %b %Y %H:%M:%S %Z')
             except ValueError:
                 pass
 
         except requests.exceptions.RequestException as detail:
             msg = str(detail)
-            match = re.search(r"\(Caused by ([a-zA-Z0-9_]+)\('[^:]*: (.*)'\)",
-                              msg)
+            match = re.search(r"\(Caused by ([a-zA-Z0-9_]+)\('[^:]*: (.*)'\)", msg)
             if match:
                 msg = "{}: {} for url: {}".format(*match.groups(), url)
             print("%s. Skipping..." % (msg))
