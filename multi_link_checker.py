@@ -19,7 +19,8 @@ for (root, dirs, files) in os.walk('.'):
       targetnames.append(name_no_extension)
 
 for targetname in targetnames:
+  userpath = os.path.expanduser("~")
+  os.chdir(userpath + '/Code/Python/link_checker/')
   executeOrder67 = "python3 link_checker.py -r 0.8 {}".format(targetname)
-  # os.system(executeOrder67)
-  print(executeOrder67)
+  os.system(executeOrder67)
   time.sleep(1)
