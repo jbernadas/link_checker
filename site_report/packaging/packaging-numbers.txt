@@ -1,6 +1,0 @@
-####### /SITE_REPORT/PACKAGING/PACKAGING WEBSITE REPORT #######
-Web pages = 47
-IMAGE files = 53
---------
-Total valid URLs = 100
-####### END #######

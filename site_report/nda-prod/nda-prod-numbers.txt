@@ -1,7 +1,0 @@
-####### /SITE_REPORT/NDA-PROD/NDA-PROD WEBSITE REPORT #######
-Web pages = 8
-PDF files  = 12
-IMAGE files = 3
---------
-Total valid URLs = 23
-####### END #######

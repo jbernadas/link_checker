@@ -1,7 +1,0 @@
-####### /SITE_REPORT/ANNUAL/ANNUAL WEBSITE REPORT #######
-Web pages = 140
-PDF files  = 87
-IMAGE files = 351
---------
-Total valid URLs = 578
-####### END #######

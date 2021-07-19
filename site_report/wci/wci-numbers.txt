@@ -1,5 +1,0 @@
-####### /SITE_REPORT/WCI/WCI WEBSITE REPORT #######
-Web pages = 0
---------
-Total valid URLs = 0
-####### END #######

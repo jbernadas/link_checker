@@ -1,7 +1,0 @@
-####### /SITE_REPORT/NCI/NCI WEBSITE REPORT #######
-Web pages = 70
-PDF files  = 36
-IMAGE files = 149
---------
-Total valid URLs = 255
-####### END #######

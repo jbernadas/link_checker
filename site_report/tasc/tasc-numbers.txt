@@ -1,8 +1,0 @@
-####### /SITE_REPORT/TASC/TASC WEBSITE REPORT #######
-Web pages = 16
-PDF files  = 8
-IMAGE files = 39
-MOV files = 10
---------
-Total valid URLs = 73
-####### END #######

@@ -1,9 +1,0 @@
-####### /SITE_REPORT/NCSP/NCSP WEBSITE REPORT #######
-Web pages = 257
-PDF files  = 1051
-IMAGE files = 105
-DOCX files = 7
-MP4 videos = 76
---------
-Total valid URLs = 1496
-####### END #######

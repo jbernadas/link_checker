@@ -1,7 +1,0 @@
-####### /SITE_REPORT/ENGINEERING-PROD/ENGINEERING-PROD WEBSITE REPORT #######
-Web pages = 35
-PDF files  = 1
-IMAGE files = 204
---------
-Total valid URLs = 240
-####### END #######

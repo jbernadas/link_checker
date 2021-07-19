@@ -1,7 +1,0 @@
-####### /SITE_REPORT/ODC/ODC WEBSITE REPORT #######
-Web pages = 49
-PDF files  = 20
-IMAGE files = 65
---------
-Total valid URLs = 134
-####### END #######
