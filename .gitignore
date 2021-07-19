@@ -4,5 +4,5 @@ venv/
 target-sitemap.txt
 test.py
 old_broken_links/
-# site_report/*
+site_report/*
 !site_report/.gitkeep
