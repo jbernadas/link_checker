@@ -1,0 +1,7 @@
+####### /SITE_REPORT/NCI-PROD/NCI-PROD WEBSITE REPORT #######
+Web pages = 53
+PDF files  = 40
+IMAGE files = 124
+--------
+Total valid URLs = 217
+####### END #######

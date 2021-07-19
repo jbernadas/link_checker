@@ -1,0 +1,8 @@
+####### /SITE_REPORT/TASC-PROD/TASC-PROD WEBSITE REPORT #######
+Web pages = 18
+PDF files  = 8
+IMAGE files = 47
+MP4 videos = 11
+--------
+Total valid URLs = 84
+####### END #######

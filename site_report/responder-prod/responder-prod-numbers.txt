@@ -1,0 +1,8 @@
+####### /SITE_REPORT/RESPONDER-PROD/RESPONDER-PROD WEBSITE REPORT #######
+Web pages = 15
+PDF files  = 30
+IMAGE files = 28
+MP4 videos = 9
+--------
+Total valid URLs = 82
+####### END #######

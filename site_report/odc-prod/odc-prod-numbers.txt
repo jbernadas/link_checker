@@ -1,0 +1,7 @@
+####### /SITE_REPORT/ODC-PROD/ODC-PROD WEBSITE REPORT #######
+Web pages = 48
+PDF files  = 23
+IMAGE files = 72
+--------
+Total valid URLs = 143
+####### END #######

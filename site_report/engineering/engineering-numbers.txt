@@ -1,0 +1,7 @@
+####### /SITE_REPORT/ENGINEERING/ENGINEERING WEBSITE REPORT #######
+Web pages = 19
+PDF files  = 1
+IMAGE files = 180
+--------
+Total valid URLs = 200
+####### END #######

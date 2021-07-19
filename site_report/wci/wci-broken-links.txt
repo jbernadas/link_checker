@@ -1,0 +1,9 @@
+WCI - Broken Links Report (404 Only)
+(This link checker can be configured to look for any HTTP response status code.)
+Version: 1.0.1
+
+There were 0 broken links found.
+
+
+Report generated in 0:09:13
+---- The End. ----

@@ -1,0 +1,9 @@
+####### /SITE_REPORT/COG-PROD/COG-PROD WEBSITE REPORT #######
+Web pages = 7
+PDF files  = 28
+IMAGE files = 3
+DOC files = 2
+DOCX files = 2
+--------
+Total valid URLs = 42
+####### END #######

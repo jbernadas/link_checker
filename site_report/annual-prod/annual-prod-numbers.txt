@@ -1,0 +1,7 @@
+####### /SITE_REPORT/ANNUAL-PROD/ANNUAL-PROD WEBSITE REPORT #######
+Web pages = 140
+PDF files  = 16
+IMAGE files = 351
+--------
+Total valid URLs = 507
+####### END #######

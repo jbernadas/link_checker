@@ -1,0 +1,6 @@
+####### /SITE_REPORT/ROTC-PROD/ROTC-PROD WEBSITE REPORT #######
+Web pages = 5
+IMAGE files = 25
+--------
+Total valid URLs = 30
+####### END #######
