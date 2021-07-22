@@ -388,14 +388,14 @@ def link_checker(netlocSplit, session, rateLimit=0.5):
     # If it finds 2 or more broken links then write this
     if broken_link_count >= 2:
       f.write("Found {} broken links.\n".format(broken_link_count))
-      # Put 2 extra spaces
-      f.write("\n\n")
+      # Put 1 extra spaces
+      f.write("\n")
    
     # Else then write this
     else:
       f.write("Found {} broken link.".format(broken_link_count))
-      # Put 2 extra spaces
-      f.write("\n\n")
+      # Put 1 extra spaces
+      f.write("\n")
           
     
     for line in broken_links:
