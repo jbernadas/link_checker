@@ -92,6 +92,8 @@ def link_checker(netlocSplit, session, rateLimit=0.5):
   # The time in seconds to limit our crawl, set this so that we don't hit server too hard
   rate_limit = rateLimit
 
+  scheme = re.compile(r'^(?:http)s?:\/\/')
+
   # timeoutsec = 120
   # target_folder = domainToSearch.split('.')[0]
   # target_urls_file = open('./site_report/' + target_folder + '/' + target_folder + '-urls.txt', 'r')
@@ -179,6 +181,7 @@ def link_checker(netlocSplit, session, rateLimit=0.5):
         else:
           # Iterate over all links on the given URL with the response code next to it
           for link in target_soup.find_all('a'):
+            # time.sleep(rate_limit)
             # Make sure this link has not been checked yet, if it has, skip it
             if (link.get('href') in searched_links):
               print(f'{bcolors.CYAN}Skipping. This link has already been checked ({link.get("href")}).{bcolors.ENDC}')
@@ -187,8 +190,9 @@ def link_checker(netlocSplit, session, rateLimit=0.5):
             else:
               if (not link.get('href') == None) and (not link.get('href').startswith("mailto:")) and (not ("javascript:" in link.get('href'))):
                 try:
+                  time.sleep(rate_limit)
                   # If there is regular URL scheme and netloc, i.e., https://example.com then execute the below
-                  if urlp.scheme in urlparse(link.get('href')):
+                  if scheme in urlparse(link.get('href')):
                     response = session.get(link.get('href'))
                     status = response.status_code
                     if status == 200:
@@ -218,7 +222,7 @@ def link_checker(netlocSplit, session, rateLimit=0.5):
                     searched_links.append(link.get('href'))
 
                   # If there is NO URL scheme and base_href is populated, then do the below
-                  if urlp.scheme not in urlparse(link.get('href')) and base_href:
+                  if scheme not in urlparse(link.get('href')) and base_href:
                     # Prepends base_href to request
                     response = session.get(urljoin(base_href, link.get('href')))
                     status = response.status_code
@@ -249,7 +253,7 @@ def link_checker(netlocSplit, session, rateLimit=0.5):
                     searched_links.append(link.get('href'))
                     
                   # If there is NO URL scheme and base_href is NOT populated, then do the below
-                  if urlp.scheme not in urlparse(link.get('href')) and not base_href:
+                  if scheme not in urlparse(link.get('href')) and not base_href:
                     # Attaches URL scheme and netloc to request
                     response = session.get(urljoin(url, link.get('href')))
                     status = response.status_code
@@ -281,12 +285,13 @@ def link_checker(netlocSplit, session, rateLimit=0.5):
                   else:
                     pass
                 except requests.exceptions.RequestException as e:
+                  print(e)
                   requestObj = "No response"
                   searched_links.append(link)
                   pass
               else:
                 pass
-            time.sleep(rate_limit)
+            # time.sleep(rate_limit)
       except AttributeError as error:
         print(f"{bcolors.WARNING}This page has no children links. Skipping to next target URL.{bcolors.ENDC}")
         searched_links.append(url)

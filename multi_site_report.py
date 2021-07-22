@@ -2,7 +2,8 @@
 
 ## Note: Before running this script make
 ## sure the batch.txt file is populated 
-## with the base url, i.e., https://example.com
+## with the base url, i.e., https://example.com,
+## of your target websites.
 
 import os
 
