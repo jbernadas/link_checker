@@ -1,0 +1,42 @@
+ODC - Broken Links Report (404 Only)
+(This link checker can be configured to look for any HTTP status code.)
+Version: 1.0.2
+Found 8 broken links.
+
+
+On this page: https://odc.llnl.gov/bookshelf/publications
+Broken link Url:  https://digitalndulibrary.ndu.edu/cdm/ref/collection/ndupress/id/13588 | Status Code: 404
+Broken link text: Combating WMD Threats
+-------------
+On this page: https://odc.llnl.gov/bookshelf/publications
+Broken link Url:  https://digitalndulibrary.ndu.edu/cdm/ref/collection/ndupress/id/13528 | Status Code: 404
+Broken link text: The Emerging Global Security Environment
+-------------
+On this page: https://odc.llnl.gov/bookshelf/publications
+Broken link Url:  https://digitalndulibrary.ndu.edu/cdm/ref/collection/ndupress/id/20376 | Status Code: 404
+Broken link text: Spacepower in the 21st Century
+-------------
+On this page: https://odc.llnl.gov/bookshelf/publications
+Broken link Url:  https://digitalndulibrary.ndu.edu/cdm/ref/collection/ndupress/id/19897 | Status Code: 404
+Broken link text: China’s ASAT Test: Motivations and Implications
+-------------
+On this page: https://odc.llnl.gov/bookshelf/publications
+Broken link Url:  https://digitalndulibrary.ndu.edu/cdm/compoundobject/collection/ndupress/id/21695 | Status Code: 404
+Broken link text: China’s ASAT Test: Motivations and Implications
+-------------
+On this page: https://odc.llnl.gov/bookshelf/publications
+Broken link Url:  https://inss.ndu.edu/Media/Biographies/Article-View/Article/700089/lutes-charles-d/ | Status Code: 404
+Broken link text: New Players on the Scene: A.Q. Khan and the Nuclear Black Market
+-------------
+On this page: https://odc.llnl.gov/bookshelf/videos
+Broken link Url:  https://odc.llnl.gov/ https:/youtu.be/6y6T06G9TMI | Status Code: 404
+Broken link text: 
+-------------
+On this page: https://odc.llnl.gov/event-calendar/2018
+Broken link Url:  https://odc.llnl.gov/event-calendar/2018/2018-05-123 | Status Code: 404
+Broken link text: Learn More »
+-------------
+
+This report was generated on 07/20/2021 at 1649H
+Link checker finished in 0:06:03
+---- The End. ----

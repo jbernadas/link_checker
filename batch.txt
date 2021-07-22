@@ -12,7 +12,6 @@ https://responder.llnl.gov
 https://responder-prod.llnl.gov
 https://tasc.llnl.gov
 https://tasc-prod.llnl.gov
-https://cog.llnl.gov
 https://ncsp.llnl.gov
 https://ncsp-prod.llnl.gov
 https://nda.llnl.gov

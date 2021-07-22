@@ -1,0 +1,13 @@
+RESPONDER-PROD - Broken Links Report (404 Only)
+(This link checker can be configured to look for any HTTP status code.)
+Version: 1.0.2
+Found 1 broken link.
+
+On this page: https://responder-prod.llnl.gov/publications
+Broken link Url:  https://www.fema.gov/media-library/assets/documents/177382 | Status Code: 404
+Broken link text: discussion materials
+-------------
+
+This report was generated on 7/20/2021 at 1311H
+Report finished in 7/20/2021 -  0:15:43
+---- The End. ----

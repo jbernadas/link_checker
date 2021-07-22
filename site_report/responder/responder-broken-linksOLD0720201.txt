@@ -1,0 +1,28 @@
+RESPONDER - Broken Links Report (404 Only)
+(This link checker can be configured to look for any HTTP status code.)
+Version: 1.0.1
+Found 5 broken links.
+
+
+On this page: https://responder.llnl.gov/publications
+Broken link Url:  http://www.fema.gov/media-library-data/20130726-1911-25045-2546/30_rrkp_key_planning_factors_radiological_incident.pdf | Status Code: 404
+Broken link text: The Key Planning Factors for Recovery from a Radiological Terrorism Incident
+-------------
+On this page: https://responder.llnl.gov/publications
+Broken link Url:  https://www.fema.gov/media-library/assets/documents/177382 | Status Code: 404
+Broken link text: discussion materials
+-------------
+On this page: https://responder.llnl.gov/publications
+Broken link Url:  https://www.fema.gov/media-library/assets/documents/24879 | Status Code: 404
+Broken link text: Planning Guidance for Response to a Nuclear Detonation
+-------------
+On this page: https://responder.llnl.gov/publications
+Broken link Url:  https://www.fema.gov/media-library/assets/documents/25554 | Status Code: 404
+Broken link text: Nuclear/Radiological Incident Annex to the Response and Recovery Federal Interagency Operational Plans
+-------------
+On this page: https://responder.llnl.gov/publications
+Broken link Url:  https://www.fema.gov/media-library/assets/documents/33036 | Status Code: 404
+Broken link text: The Federal Emergency Management Agency’s (FEMA’s) Improvised Nuclear Device Response and Recovery: Communicating in the Immediate Aftermath
+-------------
+Report generated in 0:25:05
+---- The End. ----

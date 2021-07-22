@@ -1,0 +1,11 @@
+ROTC - Broken Links Report (404 Only)
+(This link checker can be configured to look for any HTTP status code.)
+Version: 1.0.1
+Found 1 broken link.
+
+On this page: https://rotc.llnl.gov
+Broken link Url:  http://scholars-llnl.ttcportals.com/ | Status Code: 404
+Broken link text: Scholar Employment Program
+-------------
+Report generated in 0:01:27
+---- The End. ----
