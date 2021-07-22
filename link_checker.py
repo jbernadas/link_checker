@@ -34,7 +34,7 @@ start_time = ''
 broken_link_count = 0
 link_checker_version = "1.0.2"
 verifyVar = True
-time_out = (2, 60)
+time_out = (2, 15)
 sitename = ''
 
 class bcolors:
