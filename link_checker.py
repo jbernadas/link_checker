@@ -458,6 +458,5 @@ def main():
   print(f"Found {broken_link_count} broken link/s.")
   print("----- The End -----")
 
-
 if __name__ == "__main__":
   main()  
