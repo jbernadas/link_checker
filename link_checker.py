@@ -310,7 +310,7 @@ def link_checker(netlocSplit, session, rateLimit=0.5):
 
     # If URL ends with a file extension in skipthese, we don't need to check for children links, we will pass it
     if url.upper().endswith(tuple(skipthese)) or special_extension.search(url):
-      print(f"{bcolors.CYAN}Skipping, this has no children links, going to next URL.{bcolors.ENDC}")
+      print(f"{bcolors.CYAN}Skipping, this ends with {url.split('.')[1]}, going to next URL.{bcolors.ENDC}")
       searched_links.append(sLinkStatus(url, page.status_code))
       pass
 
@@ -331,7 +331,7 @@ def link_checker(netlocSplit, session, rateLimit=0.5):
 
         # If there are no 'a' tags on page, put it in
         if not target_soup.find_all('a'):
-          print(f"{bcolors.CYAN}Skipping, this page has no children links, going to next URL.{bcolors.ENDC}")
+          print(f"{bcolors.CYAN}Skipping, this page has no links inside it, going to next URL.{bcolors.ENDC}")
           searched_links.append(sLinkStatus(url, page.status_code))
           pass
         # Else, we check all links in target_soup.find_all('a')  
