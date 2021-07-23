@@ -36,6 +36,8 @@ link_checker_version = "1.0.2"
 verifyVar = True
 time_out = (2, 15)
 sitename = ''
+# Store links that have already been searched here
+searched_links = []
 
 class bcolors:
     OKGREEN = '\033[92m'
@@ -77,12 +79,15 @@ help_text = """
 
 """ % (link_checker_version)
 
-def checklink(base_href, url, target, session, searched_links, broken_links, sLinkStatus):
+def checklink(base_href, url, link, session, broken_links, sLinkStatus):
   global broken_link_count
+  global searched_links
 
   scheme = re.compile(r'^(?:http)s?:\/\/')
-  link = target
-  if target.get('href').startswith(' '):
+
+  link = link
+  
+  if link.get('href')[0].isspace():
     href = link.get('href').strip()
   else:
     href = link.get('href')
@@ -130,7 +135,7 @@ def checklink(base_href, url, target, session, searched_links, broken_links, sLi
     searched_links.append(sLinkStatus(href, status, url))
 
   # If there is NO URL scheme and base_href is populated, then do the below
-  if scheme not in urlparse(href) and base_href:
+  if scheme not in urlparse(href) and len(base_href) >= 1:
     # Prepends base_href to request
     response = session.get(urljoin(base_href, href), verify=verifyVar, timeout=time_out)
     status = response.status_code
@@ -174,7 +179,7 @@ def checklink(base_href, url, target, session, searched_links, broken_links, sLi
     searched_links.append(sLinkStatus(href, status, url))
     
   # If there is NO URL scheme and base_href is NOT populated, then do the below
-  if scheme not in urlparse(href) and not base_href:
+  if scheme not in urlparse(href) and len(base_href) == 0:
     # Attaches URL scheme and netloc to request
     response = session.get(urljoin(url, href), verify=verifyVar, timeout=time_out)
     status = response.status_code
@@ -192,6 +197,7 @@ def checklink(base_href, url, target, session, searched_links, broken_links, sLi
       broken_links.append(f"On this page: {url}")
       broken_links.append(f"Broken link Url:  {urljoin(url, href)} " + f"| Status Code: {status}")
       broken_links.append(f"Broken link text: {' '.join(link.text.split())}")
+      broken_links.append(f"{urlparse(link.get('href'))} + {url} + {urlparse(href)}")
       broken_links.append('-------------')
       broken_link_count += 1
     elif status == 301:
@@ -224,6 +230,7 @@ def link_checker(netlocSplit, session, rateLimit=0.5):
   global current_date
   global broken_link_count
   global sitename
+  global searched_links
 
   sitename = netlocSplit
   
@@ -238,8 +245,7 @@ def link_checker(netlocSplit, session, rateLimit=0.5):
       self.parent = parent
       self.status = status
 
-  # Store links that have already been searched here
-  searched_links = []
+  
   # Store broken links here
   broken_links = []
   # This holds the name of our broken links text report 
@@ -310,7 +316,7 @@ def link_checker(netlocSplit, session, rateLimit=0.5):
 
     # If URL ends with a file extension in skipthese, we don't need to check for children links, we will pass it
     if url.upper().endswith(tuple(skipthese)) or special_extension.search(url):
-      print(f"{bcolors.CYAN}Skipping, this ends with {url.split('.')[1]}, going to next URL.{bcolors.ENDC}")
+      print(f"{bcolors.CYAN}Skipping, this ends with {url.split('.')[-1]}, going to next URL.{bcolors.ENDC}")
       searched_links.append(sLinkStatus(url, page.status_code))
       pass
 
@@ -360,7 +366,7 @@ def link_checker(netlocSplit, session, rateLimit=0.5):
               if (not link.get('href') == None) and (not link.get('href').startswith("mailto:")) and (not ("javascript:" in link.get('href'))):
                 try:
                   time.sleep(rate_limit)
-                  checklink(base_href, url, link, session, searched_links, broken_links, sLinkStatus)
+                  checklink(base_href, url, link, session, broken_links, sLinkStatus)
                 except requests.exceptions.RequestException as e:
                   print(e)
                   print('-------------')
@@ -386,19 +392,19 @@ def link_checker(netlocSplit, session, rateLimit=0.5):
     f.write("{} - Broken Links Report (404 Only)\n".format(netlocSplit.upper()))
     f.write("(This link checker can be configured to look for any HTTP status code.)\n")
     f.write(f"Version: {link_checker_version}")
-    f.write("\n")
+    f.write("\n\n")
 
     # If it finds 2 or more broken links then write this
     if broken_link_count >= 2:
       f.write("Found {} broken links.\n".format(broken_link_count))
       # Put 1 extra spaces
-      f.write("\n")
+      f.write("\n\n")
    
     # Else then write this
     else:
       f.write("Found {} broken link.".format(broken_link_count))
       # Put 1 extra spaces
-      f.write("\n")
+      f.write("\n\n")
           
     
     for line in broken_links:
@@ -451,6 +457,7 @@ def main():
   print(f"Link checker finished in {str(datetime.timedelta(seconds=(time.time() - start_time))).split('.')[0]}")
   print(f"Found {broken_link_count} broken link/s.")
   print("----- The End -----")
+
 
 if __name__ == "__main__":
   main()  
