@@ -99,28 +99,29 @@ def checklink(base_href, url, target, session, searched_links, broken_links, sLi
     # 404 errors will be printed in console as RED and printed in the report
     elif status == 404:
       print(f"{bcolors.BRIGHT_RED}On this page: {url}{bcolors.ENDC}")
-      broken_links.append(f"On this page: {url}")
       print(f"{bcolors.BRIGHT_RED}Broken link Url: {href} " + f"| Status Code: {status}{bcolors.ENDC}")
-      broken_links.append(f"Broken link Url: {href} " + f"| Status Code: {status}")
       # Prints the broken link text without duplicate spaces and new lines
       print(f"{bcolors.BRIGHT_RED}Broken link text: {' '.join(link.text.split())}{bcolors.ENDC}")
-      broken_links.append(f"Broken link text: {' '.join(link.text.split())}")
       print('-------------')
+      broken_links.append(f"On this page: {url}")
+      broken_links.append(f"Broken link Url: {href} " + f"| Status Code: {status}")
+      broken_links.append(f"Broken link text: {' '.join(link.text.split())}")
       broken_links.append('-------------')
       broken_link_count += 1
     elif status == 301:
       print(f"{bcolors.BRIGHT_RED}On this page: {url}{bcolors.ENDC}")
-      broken_links.append(f"On this page: {url}")
       print(f"{bcolors.BRIGHT_RED}Moved permanently link Url: {href} " + f"| Status Code: {status}{bcolors.ENDC}")
-      broken_links.append(f"Moved permanently link Url: {href} " + f"| Status Code: {status}")
       # Prints the broken link text without duplicate spaces and new lines
       print(f"{bcolors.BRIGHT_RED}Moved permanently link text: {' '.join(link.text.split())}{bcolors.ENDC}")
-      broken_links.append(f"Moved permanently link text: {' '.join(link.text.split())}")
       print('-------------')
+      broken_links.append(f"On this page: {url}")
+      broken_links.append(f"Moved permanently link Url: {href} " + f"| Status Code: {status}")
+      broken_links.append(f"Moved permanently link text: {' '.join(link.text.split())}")
       broken_links.append('-------------')
       broken_link_count += 1
     # All other error status codes will show in console as color MAGENTA, but will not be printed in report 
-    elif status != 200 or status != 301 or status != 404:
+    # elif status != 200 or status != 301 or status != 404:
+    else:
       print(f"{bcolors.MAGENTA}Link Url: {href} " + f"| Status Code: {status}{bcolors.ENDC}")
       # Prints the link text without duplicate spaces and new lines
       print(f"{bcolors.MAGENTA}Link text: {' '.join(link.text.split())}{bcolors.ENDC}")
@@ -140,28 +141,29 @@ def checklink(base_href, url, target, session, searched_links, broken_links, sLi
     # 404 errors will be printed in console as RED and printed in the report
     elif status == 404:
       print(f"{bcolors.BRIGHT_RED}On this page: {url}{bcolors.ENDC}")
-      broken_links.append(f"On this page: {url}")
       print(f"{bcolors.BRIGHT_RED}Broken link Url:  {urljoin(base_href, href)} " + f"| Status Code: {status}{bcolors.ENDC}")
-      broken_links.append(f"Broken link Url:  {urljoin(base_href, href)} " + f"| Status Code: {status}")
-      # Prints the broken link text without duplicate spaces and new lines
+      # Prints the broken link text strips duplicate spaces and new lines
       print(f"{bcolors.BRIGHT_RED}Broken link text: {' '.join(link.text.split())}{bcolors.ENDC}")
-      broken_links.append(f"Broken link text: {' '.join(link.text.split())}")
       print('-------------')
+      broken_links.append(f"On this page: {url}")
+      broken_links.append(f"Broken link Url:  {urljoin(base_href, href)} " + f"| Status Code: {status}")
+      broken_links.append(f"Broken link text: {' '.join(link.text.split())}")
       broken_links.append('-------------')
       broken_link_count += 1
     elif status == 301:
       print(f"{bcolors.BRIGHT_RED}On this page: {url}{bcolors.ENDC}")
-      broken_links.append(f"On this page: {url}")
       print(f"{bcolors.BRIGHT_RED}Moved permanently link Url: {href} " + f"| Status Code: {status}{bcolors.ENDC}")
-      broken_links.append(f"Moved permanently link Url: {href} " + f"| Status Code: {status}")
       # Prints the broken link text without duplicate spaces and new lines
       print(f"{bcolors.BRIGHT_RED}Moved permanently link text: {' '.join(link.text.split())}{bcolors.ENDC}")
-      broken_links.append(f"Moved permanently link text: {' '.join(link.text.split())}")
       print('-------------')
+      broken_links.append(f"On this page: {url}")
+      broken_links.append(f"Moved permanently link Url: {href} " + f"| Status Code: {status}")
+      broken_links.append(f"Moved permanently link text: {' '.join(link.text.split())}")
       broken_links.append('-------------')
       broken_link_count += 1
     # All other error status codes will show in console as color MAGENTA, but will not be printed in report
-    elif status != 200 or status != 301 or status != 404:
+    # elif status != 200 or status != 301 or status != 404:
+    else:
       print(f"{bcolors.MAGENTA}Link Url:  {urljoin(base_href, href)} " + f"| Status Code: {status}{bcolors.ENDC}")
       # Prints the link text without duplicate spaces and new lines
       print(f"{bcolors.MAGENTA}Link text: {' '.join(link.text.split())}{bcolors.ENDC}")
@@ -183,28 +185,29 @@ def checklink(base_href, url, target, session, searched_links, broken_links, sLi
     # 404 errors will be printed in console as RED and printed in the report
     elif status == 404:
       print(f"{bcolors.BRIGHT_RED}On this page: {url}{bcolors.ENDC}")
-      broken_links.append(f"On this page: {url}")
       print(f"{bcolors.BRIGHT_RED}Broken link Url:  {urljoin(url, href)} " + f"| Status Code: {status}{bcolors.ENDC}")
-      broken_links.append(f"Broken link Url:  {urljoin(url, href)} " + f"| Status Code: {status}")
       # Prints the broken link text without duplicate spaces and new lines
       print(f"{bcolors.BRIGHT_RED}Broken link text: {' '.join(link.text.split())}{bcolors.ENDC}")
-      broken_links.append(f"Broken link text: {' '.join(link.text.split())}")
       print('-------------')
+      broken_links.append(f"On this page: {url}")
+      broken_links.append(f"Broken link Url:  {urljoin(url, href)} " + f"| Status Code: {status}")
+      broken_links.append(f"Broken link text: {' '.join(link.text.split())}")
       broken_links.append('-------------')
       broken_link_count += 1
     elif status == 301:
       print(f"{bcolors.BRIGHT_RED}On this page: {url}{bcolors.ENDC}")
-      broken_links.append(f"On this page: {url}")
       print(f"{bcolors.BRIGHT_RED}Moved permanently link Url: {href} " + f"| Status Code: {status}{bcolors.ENDC}")
-      broken_links.append(f"Moved permanently link Url: {href} " + f"| Status Code: {status}")
       # Prints the broken link text without duplicate spaces and new lines
       print(f"{bcolors.BRIGHT_RED}Moved permanently link text: {' '.join(link.text.split())}{bcolors.ENDC}")
-      broken_links.append(f"Moved permanently link text: {' '.join(link.text.split())}")
       print('-------------')
+      broken_links.append(f"On this page: {url}")
+      broken_links.append(f"Moved permanently link Url: {href} " + f"| Status Code: {status}")
+      broken_links.append(f"Moved permanently link text: {' '.join(link.text.split())}")
       broken_links.append('-------------')
       broken_link_count += 1
     # All other error status codes will show in console as color MAGENTA, but will not be printed in report
-    elif status != 200 or status != 301 or status != 404:
+    # elif status != 200 or status != 301 or status != 404:
+    else:
       print(f"{bcolors.MAGENTA}Link Url:  {urljoin(url, href)} " + f"| Status Code: {status}{bcolors.ENDC}")
       # Prints the link text without duplicate spaces and new lines
       print(f"{bcolors.MAGENTA}Link text: {' '.join(link.text.split())}{bcolors.ENDC}")
