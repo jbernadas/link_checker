@@ -7,7 +7,6 @@ Found 1 broken link.
 On this page: https://ncsp.llnl.gov/cssg_tasking.php
 Broken link Url:  http://ncsp/cssg/taskandresponse/2011/CSSG_2011-03_Tasking_Response.pdf | Status Code: 404
 Broken link text: 
-ParseResult(scheme='http', netloc='ncsp', path='/cssg/taskandresponse/2011/CSSG_2011-03_Tasking_Response.pdf', params='', query='', fragment='') + https://ncsp.llnl.gov/cssg_tasking.php + ParseResult(scheme='http', netloc='ncsp', path='/cssg/taskandresponse/2011/CSSG_2011-03_Tasking_Response.pdf', params='', query='', fragment='')
 -------------
 
 This report was generated on 07/23/2021 at 1217H

@@ -1,0 +1,10 @@
+COG - Broken Links Report (404 Only)
+(This link checker can be configured to look for any HTTP status code.)
+Version: 1.0.2
+
+Found 0 broken link.
+
+
+This report was generated on 07/23/2021 at 1456H
+Link checker finished in 0:00:14
+---- The End. ----

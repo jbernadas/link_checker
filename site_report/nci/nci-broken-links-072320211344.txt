@@ -1,0 +1,86 @@
+NCI - Broken Links Report (404 Only)
+(This link checker can be configured to look for any HTTP status code.)
+Version: 1.0.2
+
+Found 19 broken links.
+
+On this page: https://nci.llnl.gov/?q=about_nci/news
+Broken link Url:  http://www.ryancarney.com/video | Status Code: 404
+Broken link text: Examples of Active Interrogation Systems
+-------------
+On this page: https://nci.llnl.gov/?q=about_nci/news/news_archive
+Broken link Url:  https://str.llnl.gov/str/pdfs/12_97.1.pdf | Status Code: 404
+Broken link text: Active & Passive Computed Tomography (A&PCT)
+-------------
+On this page: https://nci.llnl.gov/?q=about_nci/news/news_archive
+Broken link Url:  https://str.llnl.gov/JulAug09/allen.html | Status Code: 404
+Broken link text: A CAT Scanner for Nuclear Weapon Components
+-------------
+On this page: https://nci.llnl.gov/?q=about_nci/news/news_archive
+Broken link Url:  https://str.llnl.gov/str/October03/Martz.html | Status Code: 404
+Broken link text: 3D Tomography of Laser Fusion Targets
+-------------
+On this page: https://nci.llnl.gov/?q=about_nci/news/news_archive
+Broken link Url:  https://str.llnl.gov/str/JulAug01/Martz.html | Status Code: 404
+Broken link text: Looking into the Shadow World
+-------------
+On this page: https://nci.llnl.gov/?q=about_nci/news/news_archive
+Broken link Url:  https://str.llnl.gov/June11/martz.html | Status Code: 404
+Broken link text: Preventing Terror in the Skies
+-------------
+On this page: https://nci.llnl.gov/?q=about_nci/news/news_archive
+Broken link Url:  https://str.llnl.gov/str/Roberson.html | Status Code: 404
+Broken link text: Active and Passive CT for Radioactive Waste Assay
+-------------
+On this page: https://nci.llnl.gov/?q=about_nci/news/news_archive
+Broken link Url:  https://str.llnl.gov/str/Azevedo.html | Status Code: 404
+Broken link text: LANDMARC: Making Land Mine Detection and Removal Practical
+-------------
+On this page: https://nci.llnl.gov/?q=about_nci/news/news_archive
+Broken link Url:  https://str.llnl.gov/str/September04/Azevedo.html | Status Code: 404
+Broken link text: Exploring the Ultra-wideband
+-------------
+On this page: https://nci.llnl.gov/?q=about_nci/news/news_archive
+Broken link Url:  https://str.llnl.gov/str/NovDec08/securebox.html | Status Code: 404
+Broken link text: Protecting the Nation through Secure Cargo
+-------------
+On this page: https://nci.llnl.gov/?q=about_nci/news/news_archive
+Broken link Url:  https://str.llnl.gov/str/Hernandez.html | Status Code: 404
+Broken link text: Bridge Diagnosis at 55 mph
+-------------
+On this page: https://nci.llnl.gov/?q=about_nci/our_staff
+Broken link Url:  http://iss.bu.edu/dac/ | Status Code: 404
+Broken link text: David Castanon
+-------------
+On this page: https://nci.llnl.gov/?q=partnering/academia
+Broken link Url:  http://nnsa.energy.gov/federalemployment/ourjobs/studentsopportunities/msi | Status Code: 404
+Broken link text: Minority Serving Institution
+-------------
+On this page: https://nci.llnl.gov/?q=partnering/centers_institutes
+Broken link Url:  https://manufacturing.llnl.gov/precision-engineering/ | Status Code: 404
+Broken link text: Center for Precision Engineering
+-------------
+On this page: https://nci.llnl.gov/?q=partnering/centers_institutes
+Broken link Url:  http://computation.llnl.gov/about/organization/institute-scientific-computing-research/ | Status Code: 404
+Broken link text: Institute for Scientific Computing Research (ISCR)
+-------------
+On this page: https://nci.llnl.gov/?q=projects/sponsored
+Broken link Url:  https://str.llnl.gov/str/JulAug08/pdfs/07.08.2.pdf | Status Code: 404
+Broken link text: For more information
+-------------
+On this page: https://nci.llnl.gov/careers
+Broken link Url:  https://nci.llnl.gov/content/assets/docs/univ-collab.pdf | Status Code: 404
+Broken link text: more information
+-------------
+On this page: https://nci.llnl.gov/careers
+Broken link Url:  https://careers-llnl.ttcportals.com/jobs/search?q=&advanced=1&cf%5BORG_CD_LL%5D%5B%5D=007&cf%5BJOBFAMILY%5D%5B%5D=PD&cf%5BJOBFAMILY%5D%5B%5D=SE&cf%5BJOBFAMILY%5D%5B%5D=SF&cf%5BJOBFAMILY%5D%5B%5D=TM&cf%5BJOBFAMILY%5D%5B%5D=TS&cf%5BJOBFAMILY%5D%5B%5D=TI&cf%5BJOBFAMILY%5D%5B%5D=TF&posted-within=all&per_page=25 | Status Code: 404
+Broken link text: Engineering Jobs
+-------------
+On this page: https://nci.llnl.gov/careers/student_postdoc
+Broken link Url:  https://nci.llnl.gov/content/assets/docs/postdoc_opportunities.pdf | Status Code: 404
+Broken link text: FLYER
+-------------
+
+This report was generated on 07/23/2021 at 1344H
+Link checker finished in 0:16:27
+---- The End. ----

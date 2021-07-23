@@ -1,0 +1,18 @@
+ROTC - Broken Links Report (404 Only)
+(This link checker can be configured to look for any HTTP status code.)
+Version: 1.0.2
+
+Found 2 broken links, out of 82 URLs checked.
+
+On this page: https://rotc.llnl.gov
+Broken link Url:  http://scholars-llnl.ttcportals.com/ | Status Code: 404
+Broken link text: Scholar Employment Program
+-------------
+On this page: https://rotc.llnl.gov/apply
+Broken link Url:  https://scholars-llnl.ttcportals.com/jobs/3234757-rotc-student-intern | Status Code: 404
+Broken link text: Begin Online Application
+-------------
+
+This report was generated on 07/23/2021 at 1620H
+Link checker finished in 0:01:27
+---- The End. ----

@@ -15,18 +15,19 @@ import sys
 from itertools import islice
 import warnings
 import random
-## For debugging starts
-import logging
-import http.client
 
-http.client.HTTPConnection.debuglevel = 1
+## For debugging (uncomment to use)
+# import logging
+# import http.client
 
-logging.basicConfig()
-logging.getLogger().setLevel(logging.DEBUG)
-requests_log = logging.getLogger("requests.packages.urllib3")
-requests_log.setLevel(logging.DEBUG)
-requests_log.propagate = True
-# End of For debugging
+# http.client.HTTPConnection.debuglevel = 1
+
+# logging.basicConfig()
+# logging.getLogger().setLevel(logging.DEBUG)
+# requests_log = logging.getLogger("requests.packages.urllib3")
+# requests_log.setLevel(logging.DEBUG)
+# requests_log.propagate = True
+## End of For debugging
 
 # Used for timer
 start_time = ''
@@ -197,7 +198,6 @@ def checklink(base_href, url, link, session, broken_links, sLinkStatus):
       broken_links.append(f"On this page: {url}")
       broken_links.append(f"Broken link Url:  {urljoin(url, href)} " + f"| Status Code: {status}")
       broken_links.append(f"Broken link text: {' '.join(link.text.split())}")
-      broken_links.append(f"{urlparse(link.get('href'))} + {url} + {urlparse(href)}")
       broken_links.append('-------------')
       broken_link_count += 1
     elif status == 301:
@@ -312,11 +312,11 @@ def link_checker(netlocSplit, session, rateLimit=0.5):
     #####  TO DO: CREATE AN IF, ELIF, ELSE COND HERE TO CHECK IF PAGE IS 200, 404 OR NOT
     #####  THEN PRINT IT ALSO IF BROKEN
 
-    special_extension = re.compile("\.jpg\?.*")
+    special_extension = re.compile("\.(jpe?g|png|gif|bmp|pdf)\?itok=[a-zA-Z0-9_-]*")
 
     # If URL ends with a file extension in skipthese, we don't need to check for children links, we will pass it
     if url.upper().endswith(tuple(skipthese)) or special_extension.search(url):
-      print(f"{bcolors.CYAN}Skipping, this ends with {url.split('.')[-1]}, going to next URL.{bcolors.ENDC}")
+      print(f"{bcolors.CYAN}File extension {url.split('.')[-1]}, not checking for child links, going to next URL.{bcolors.ENDC}")
       searched_links.append(sLinkStatus(url, page.status_code))
       pass
 
@@ -337,7 +337,7 @@ def link_checker(netlocSplit, session, rateLimit=0.5):
 
         # If there are no 'a' tags on page, put it in
         if not target_soup.find_all('a'):
-          print(f"{bcolors.CYAN}Skipping, this page has no links inside it, going to next URL.{bcolors.ENDC}")
+          print(f"{bcolors.CYAN}There are no links found on this page, going to next URL.{bcolors.ENDC}")
           searched_links.append(sLinkStatus(url, page.status_code))
           pass
         # Else, we check all links in target_soup.find_all('a')  
@@ -396,19 +396,22 @@ def link_checker(netlocSplit, session, rateLimit=0.5):
 
     # If it finds 2 or more broken links then write this
     if broken_link_count >= 2:
-      f.write("Found {} broken links.\n".format(broken_link_count))
+      f.write("Found {} broken links, out of {} URLs checked.\n".format(broken_link_count, len(searched_links)))
       # Put 1 extra spaces
-      f.write("\n\n")
+      f.write("\n")
    
     # Else then write this
     else:
-      f.write("Found {} broken link.".format(broken_link_count))
+      f.write("Found {} broken link, out of {} URLs checked.\n".format(broken_link_count, len(searched_links)))
       # Put 1 extra spaces
-      f.write("\n\n")
+      f.write("\n")
           
-    
-    for line in broken_links:
-      f.write("{}\n".format(line))
+    if len(broken_links) >= 1:
+      for line in broken_links:
+        f.write("{}\n".format(line))
+    else:
+        f.write("-------------\n")
+
     f.write("\n")
     f.write(f"This report was generated on {current_date.month:02d}/{current_date.day:02d}/{current_date.year} at {current_date.hour:02d}{current_date.minute:02d}H\n")
     f.write(f"Link checker finished in {str(datetime.timedelta(seconds=(time.time() - start_time))).split('.')[0]}\n")
@@ -455,7 +458,7 @@ def main():
   print('\n')
   print(f"Finished checking {sitename}")
   print(f"Link checker finished in {str(datetime.timedelta(seconds=(time.time() - start_time))).split('.')[0]}")
-  print(f"Found {broken_link_count} broken link/s.")
+  print(f"Found {broken_link_count} broken link/s, out of {len(searched_links)} URLs checked.")
   print("----- The End -----")
 
 if __name__ == "__main__":
